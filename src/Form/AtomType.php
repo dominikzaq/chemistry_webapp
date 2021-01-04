@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Atom;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,6 +22,7 @@ class AtomType extends AbstractType
             ->add('meltingTemperature')
             ->add('density')
             ->add('boilingTemperature')
+            ->add('save', SubmitType::class, ['label' => 'Add atom'])
         ;
     }
 

@@ -35,7 +35,12 @@ class AtomRepository extends ServiceEntityRepository
         ;
     }
     */
-
+    public function findAllAtoms(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->getQuery()
+            ->getArrayResult();
+    }
     /*
     public function findOneBySomeField($value): ?Atom
     {
