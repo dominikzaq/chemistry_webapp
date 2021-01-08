@@ -4,14 +4,28 @@
 
 {% block body %}
     <h1> Search atom</h1>
-    <form action="{{ path('atom_view') }}" method="POST">
-        <label for="fname">Write name of atom:</label><br>
-        <input type="text" name="atom_name"><br>
-        <input type="submit" value="Search">
+    {{ form(form) }}
+
+    <h1> Search atom by symbol</h1>
+    <form action="{{ path("search_id") }}">
+        <select name="id_atom">
+            {% for i in atoms %}
+                <option value="{{ i.id }}">{{i.symbol}}</option>
+{#
+                <input type="hidden" name="id" value="{{ i.id }}">
+#}
+            {% endfor %}
+        </select>
+        <input type="submit" class="btn btn-info" value="Search">
     </form>
 
-    <a href="{{ path('home') }}">Home</a>
-    <a href="{{ path('atom_list') }}">List of atoms</a>
-    <a href="{{ path('home') }}">Create User</a>
-    <a href="{{ path('app_login') }}">Log in</a>
+    <h1> Search atom by name</h1>
+    <form action="{{ path("search_id") }}">
+        <select name="id_atom">
+        {% for i in atoms %}
+            <option value="{{i.id}}">{{i.name}}</option>
+        {% endfor %}
+        </select>
+        <input type="submit" class="btn btn-info" value="Search">
+    </form>
 {% endblock %}

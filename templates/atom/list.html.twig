@@ -19,12 +19,14 @@
             <tr>
                 <td>{{ atom.name }}</td>
                 <td>{{ atom.symbol }}</td>
-                <td><a href="{{ path('atom_edit', {'atom': atom}) }}">
+{#                <td><a href="{{ path('atom_add_image', {'id': atom.id}) }}">
+                        Edit
+                </a></td>#}
+                <td><a href="{{ path('atom_edit', {'id': atom.id}) }}">
                     Edit
                     </a></td>
                 <td><a href="{{ path('atom_delete', {'id': atom.id}) }}">
-                    Delete
-                    </a></td>
+                    Delete</a></td>
             </tr>
         {% endfor %}
         </tbody>

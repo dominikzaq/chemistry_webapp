@@ -4,4 +4,47 @@
 
 {% block body %}
     <h1>View Atom</h1>
+    <table class="table table-sm">
+        <tbody>
+        <tr>
+            <th scope="row">Symbol</th>
+            <td>{{ atom.symbol }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Atomic number</th>
+            <td>{{ atom.name }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Atomic weight</th>
+            <td>{{ atom.atomicWeight }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Atomic radius</th>
+            <td>{{ atom.atomicRadius }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Ion radius</th>
+            <td>{{ atom.ionRadius }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Melting temperature</th>
+            <td>{{ atom.meltingTemperature }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Atom density</th>
+            <td>{{ atom.density }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Boiling temperature</th>
+            <td>{{ atom.boilingTemperature }}</td>
+        </tr>
+
+        {% for i in url_images %}
+            <tr>
+                <img src="{{asset(i) }}" class="img-fluid" width="200" height="200">
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
 {% endblock %}

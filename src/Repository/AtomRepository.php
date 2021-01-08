@@ -41,15 +41,28 @@ class AtomRepository extends ServiceEntityRepository
             ->getQuery()
             ->getArrayResult();
     }
-    /*
-    public function findOneBySomeField($value): ?Atom
+
+    public function findOneByAtomSymbol($value): ?Atom
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
+            ->select('a', 'd')
+            ->andWhere('a.symbol = :val')
             ->setParameter('val', $value)
+            ->leftJoin('a.images', 'd')
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+
+    public function findOneByName($value): ?Atom
+    {
+        return $this->createQueryBuilder('a')
+            ->select('a', 'd')
+            ->andWhere('a.name = :val')
+            ->setParameter('val', $value)
+            ->leftJoin('a.images', 'd')
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
 }
