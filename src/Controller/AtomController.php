@@ -24,26 +24,31 @@ class AtomController extends AbstractController
 {
 
     /**
-     * @Route("/search", name="search_id")
+     * @Route("/search", name="search_atom_by_id")
      */
-    public function atomSearchById(Request $request, AtomRepository $atomRepository): Response
+    public function searchAtomById(Request $request, AtomRepository $atomRepository): Response
     {
         $idAtom = $request->query->get('id_atom');
+
         $atom = $atomRepository->findOneBy(["id"=>$idAtom]);
+        if($atom != null) {
+            $urlImages = [];
+            $images = $atom->getImages();
+            $destination = 'uploads/images/';
 
-        $urlImages = [];
-        $images = $atom->getImages();
-        $destination = 'uploads/images/';
+            foreach ($images as $image) {
+                array_push($urlImages, $destination . $image->getImg());
+            }
 
-        foreach ($images as $image)
-        {
-            array_push($urlImages,$destination.$image->getImg());
+            return $this->render('atom/view.html.twig', [
+                "atom" => $atom,
+                "url_images" => $urlImages
+            ]);
         }
-
-        return $this->render('atom/view.html.twig', [
-            "atom" => $atom,
-            "url_images" => $urlImages
-        ]);
+        else {
+            $this->addFlash('show_result', "Can't find  *$idAtom* in databases");
+            return $this->redirectToRoute("home");
+        }
     }
 
     /**

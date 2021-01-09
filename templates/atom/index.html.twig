@@ -7,20 +7,17 @@
     {{ form(form) }}
 
     <h1> Search atom by symbol</h1>
-    <form action="{{ path("search_id") }}">
+    <form action="{{ path("search_atom_by_id") }}">
         <select name="id_atom">
             {% for i in atoms %}
                 <option value="{{ i.id }}">{{i.symbol}}</option>
-{#
-                <input type="hidden" name="id" value="{{ i.id }}">
-#}
             {% endfor %}
         </select>
         <input type="submit" class="btn btn-info" value="Search">
     </form>
 
     <h1> Search atom by name</h1>
-    <form action="{{ path("search_id") }}">
+    <form action="{{ path("search_atom_by_id") }}">
         <select name="id_atom">
         {% for i in atoms %}
             <option value="{{i.id}}">{{i.name}}</option>
