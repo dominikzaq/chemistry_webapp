@@ -3,7 +3,8 @@ Install symfony:
 
 - mysql 
 - php >=7.2.5
-- symfony5
+- symfony
+- composer
 
 1. Download project
 2. Go to chemistry_webapp directory:
