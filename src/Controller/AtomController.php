@@ -171,7 +171,7 @@ class AtomController extends AbstractController
     }
 
     /**
-     * @Route("/atom/delete{id}", name="atom_delete")
+     * @Route("/atom/delete/{id}", name="atom_delete")
      */
     public function delete(Atom $atom, AtomRepository $atomRepository,ImageRepository $imageRepository): Response
     {

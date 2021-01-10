@@ -19,22 +19,6 @@ class AtomRepository extends ServiceEntityRepository
         parent::__construct($registry, Atom::class);
     }
 
-    // /**
-    //  * @return Atom[] Returns an array of Atom objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
     public function findAllAtoms(): array
     {
         return $this->createQueryBuilder('a')
