@@ -8,6 +8,7 @@ use App\Form\AtomType;
 use App\Repository\AtomRepository;
 use App\Repository\ImageRepository;
 use App\Service\FileUploader;
+use Doctrine\DBAL\Exception;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -171,7 +172,7 @@ class AtomController extends AbstractController
     }
 
     /**
-     * @Route("/atom/delete/{id}", name="atom_delete")
+     * @Route("/atom/atom/delete/{id}", name="atom_delete")
      */
     public function delete(Atom $atom, AtomRepository $atomRepository,ImageRepository $imageRepository): Response
     {
@@ -207,20 +208,32 @@ class AtomController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $imageFile = $form->get("image")->getData();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($atom);
-            $em->flush();
-
+            try
+            {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($atom);
+                $em->flush();
+            }catch (Exception $e)
+            {
+                $this->addFlash('show_result', "Can't add atom");
+                return $this->redirectToRoute('atom_list');
+            }
             if($imageFile)
             {
-                $imageFileName = $fileUploader->upload($imageFile);
-                $image = new Image();
-                $image->setAtom($atom);
-                $image->setImg($imageFileName);
+                try {
+                    $imageFileName = $fileUploader->upload($imageFile);
+                    $image = new Image();
+                    $image->setAtom($atom);
+                    $image->setImg($imageFileName);
 
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($image);
-                $em->flush();
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($image);
+                    $em->flush();
+                }catch (Exception $e)
+                {
+                    $this->addFlash('show_result', "Can't add image");
+                    return $this->redirectToRoute('atom_list');
+                }
             }
 
             return $this->redirectToRoute('atom_list');
