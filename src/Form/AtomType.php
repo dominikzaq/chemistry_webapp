@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\{FileType, IntegerType, NumberType, SubmitType, TextType};
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 
 class AtomType extends AbstractType
 {
@@ -25,7 +26,10 @@ class AtomType extends AbstractType
             ->add('image', FileType::class,[
                 'label' => 'Photo (png, jpeg)',
                 'mapped' => false,
-                'required' => false
+                'required' => false,
+                'constraints' => [
+                    new Image()
+                ]
             ])
             ->add('save', SubmitType::class, ['label' => 'Save'])
         ;

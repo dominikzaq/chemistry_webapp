@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Atom;
 use App\Entity\Image;
 use App\Form\AtomType;
-use App\Form\ImageType;
 use App\Repository\AtomRepository;
 use App\Repository\ImageRepository;
 use App\Service\FileUploader;
