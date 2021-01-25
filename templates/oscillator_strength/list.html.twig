@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Energy Level List{% endblock %}
+
+
+{% block body %}
+    <h1>List Oscilator level</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Intensity</th>
+            <th scope="col">Wavelength(A)<th>
+            <th scope="col">Aki</th>
+            <th scope="col">Configurations</th>
+            <th scope="col">Terms</th>
+            <th scope="col">J</th>
+            <th scope="col">IdJon</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for oscillator_strength in oscillators_strength %}
+            <tr>
+                <td>{{ oscillator_strength.id }}</td>
+                <td>{{ oscillator_strength.intensity }}</td>
+                <td>{{ oscillator_strength.wavelength }}</td>
+                <td>{{ oscillator_strength.aki }}</td>
+                <td>{{ oscillator_strength.configuration }}</td>
+                <td>{{ oscillator_strength.term }}</td>
+                <td>{{ oscillator_strength.j }}</td>
+                <td></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

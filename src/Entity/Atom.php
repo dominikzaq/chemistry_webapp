@@ -71,9 +71,15 @@ class Atom
      */
     private $images;
 
+    /**
+     * @ORM\OneToMany(targetEntity=JonizationLevel::class, mappedBy="atom")
+     */
+    private $jonizationLevels;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->jonizationLevels = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -213,6 +219,36 @@ class Atom
             // set the owning side to null (unless already changed)
             if ($image->getAtom() === $this) {
                 $image->setAtom(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|JonizationLevel[]
+     */
+    public function getJonizationLevels(): Collection
+    {
+        return $this->jonizationLevels;
+    }
+
+    public function addJonizationLevel(JonizationLevel $jonizationLevel): self
+    {
+        if (!$this->jonizationLevels->contains($jonizationLevel)) {
+            $this->jonizationLevels[] = $jonizationLevel;
+            $jonizationLevel->setAtom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJonizationLevel(JonizationLevel $jonizationLevel): self
+    {
+        if ($this->jonizationLevels->removeElement($jonizationLevel)) {
+            // set the owning side to null (unless already changed)
+            if ($jonizationLevel->getAtom() === $this) {
+                $jonizationLevel->setAtom(null);
             }
         }
 

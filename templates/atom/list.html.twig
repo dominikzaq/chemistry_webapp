@@ -10,6 +10,8 @@
         <tr>
             <th scope="col">name</th>
             <th scope="col">symbol</th>
+            <th scope="col">Jonization level</th>
+            <th scope="col">Jonization level</th>
             <th scope="col">edit</th>
             <th scope="col">delete</th>
         </tr>
@@ -19,12 +21,21 @@
             <tr>
                 <td>{{ atom.name }}</td>
                 <td>{{ atom.symbol }}</td>
-{#                <td><a href="{{ path('atom_add_image', {'id': atom.id}) }}">
-                        Edit
-                </a></td>#}
-                <td><a href="{{ path('atom_edit', {'id': atom.id}) }}">
+                <td>
+                    <a href="{{ path('jonization_level_list', {'id': atom.id}) }}">
+                        List
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('jonization_level_add', {'id': atom.id}) }}">
+                        Add
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('atom_edit', {'id': atom.id}) }}">
                     Edit
-                    </a></td>
+                    </a>
+                </td>
                 <td><a href="{{ path('atom_delete', {'id': atom.id}) }}">
                     Delete</a></td>
             </tr>
