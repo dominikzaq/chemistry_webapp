@@ -18,90 +18,233 @@ class OscillatorStrength
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=JonizationLevel::class, inversedBy="oscillatorStrengths")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $intensity;
-
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $waveLength;
-
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $aki;
+    private $jonizationLevel;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $configuration;
+    private $transition;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $jJ;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $fik1;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $aki1;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $fik2;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $aki2;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $fik3;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $aki3;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $fik4;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $aki4;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $fik5;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $aki5;
 
     /**
      * @ORM\Column(type="string", length=20)
      */
     private $term;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $j;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=JonizationLevel::class, inversedBy="oscillatorStrengths")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $jonizationLevel;
-
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIntensity(): ?int
+    public function getJonizationLevel(): ?JonizationLevel
     {
-        return $this->intensity;
+        return $this->jonizationLevel;
     }
 
-    public function setIntensity(int $intensity): self
+    public function setJonizationLevel(?JonizationLevel $jonizationLevel): self
     {
-        $this->intensity = $intensity;
+        $this->jonizationLevel = $jonizationLevel;
 
         return $this;
     }
 
-    public function getWaveLength(): ?float
+    public function getTransition(): ?string
     {
-        return $this->waveLength;
+        return $this->transition;
     }
 
-    public function setWaveLength(float $waveLength): self
+    public function setTransition(string $transition): self
     {
-        $this->waveLength = $waveLength;
+        $this->transition = $transition;
 
         return $this;
     }
 
-    public function getAki(): ?float
+    public function getJJ(): ?string
     {
-        return $this->aki;
+        return $this->jJ;
     }
 
-    public function setAki(float $aki): self
+    public function setJJ(string $jJ): self
     {
-        $this->aki = $aki;
+        $this->jJ = $jJ;
 
         return $this;
     }
 
-    public function getConfiguration(): ?string
+    public function getFik1(): ?float
     {
-        return $this->configuration;
+        return $this->fik1;
     }
 
-    public function setConfiguration(string $configuration): self
+    public function setFik1(float $fik1): self
     {
-        $this->configuration = $configuration;
+        $this->fik1 = $fik1;
+
+        return $this;
+    }
+
+    public function getAki1(): ?float
+    {
+        return $this->aki1;
+    }
+
+    public function setAki1(float $aki1): self
+    {
+        $this->aki1 = $aki1;
+
+        return $this;
+    }
+
+    public function getFik2(): ?float
+    {
+        return $this->fik2;
+    }
+
+    public function setFik2(float $fik2): self
+    {
+        $this->fik2 = $fik2;
+
+        return $this;
+    }
+
+    public function getAki2(): ?float
+    {
+        return $this->aki2;
+    }
+
+    public function setAki2(float $aki2): self
+    {
+        $this->aki2 = $aki2;
+
+        return $this;
+    }
+
+    public function getFik3(): ?float
+    {
+        return $this->fik3;
+    }
+
+    public function setFik3(float $fik3): self
+    {
+        $this->fik3 = $fik3;
+
+        return $this;
+    }
+
+    public function getAki3(): ?float
+    {
+        return $this->aki3;
+    }
+
+    public function setAki3(float $aki3): self
+    {
+        $this->aki3 = $aki3;
+
+        return $this;
+    }
+
+    public function getFik4(): ?float
+    {
+        return $this->fik4;
+    }
+
+    public function setFik4(float $fik4): self
+    {
+        $this->fik4 = $fik4;
+
+        return $this;
+    }
+
+    public function getAki4(): ?float
+    {
+        return $this->aki4;
+    }
+
+    public function setAki4(float $aki4): self
+    {
+        $this->aki4 = $aki4;
+
+        return $this;
+    }
+
+    public function getFik5(): ?float
+    {
+        return $this->fik5;
+    }
+
+    public function setFik5(float $fik5): self
+    {
+        $this->fik5 = $fik5;
+
+        return $this;
+    }
+
+    public function getAki5(): ?float
+    {
+        return $this->aki5;
+    }
+
+    public function setAki5(float $aki5): self
+    {
+        $this->aki5 = $aki5;
 
         return $this;
     }
@@ -114,30 +257,6 @@ class OscillatorStrength
     public function setTerm(string $term): self
     {
         $this->term = $term;
-
-        return $this;
-    }
-
-    public function getJ(): ?int
-    {
-        return $this->j;
-    }
-
-    public function setJ(int $j): self
-    {
-        $this->j = $j;
-
-        return $this;
-    }
-
-    public function getJonizationLevel(): ?JonizationLevel
-    {
-        return $this->jonizationLevel;
-    }
-
-    public function setJonizationLevel(?JonizationLevel $jonizationLevel): self
-    {
-        $this->jonizationLevel = $jonizationLevel;
 
         return $this;
     }

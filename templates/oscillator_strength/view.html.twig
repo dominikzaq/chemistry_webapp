@@ -4,7 +4,7 @@
 
 
 {% block body %}
-    <h1>List Oscillator strength</h1>
+    <h1>View Oscillator strength</h1>
     <table class="table">
         <thead>
         <tr>
@@ -24,8 +24,6 @@
             <th scope="col">Aki [5]</th>
             <th scope="col">Fik ref.</th>
             <th scope="col">Aki ref.</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -47,12 +45,6 @@
                 <td>{{ oscillator_strength.aki5 }}</td>
                 <td></td>
                 <td></td>
-                <td>
-                    <a href="{{ path('oscillator_strength_edit', {'id': oscillator_strength.id}) }}">Edit</a>
-                </td>
-                <td>
-                    <a href="{{ path('oscillator_strength_delete', {'id': oscillator_strength.id}) }}">Delete</a>
-                </td>
             </tr>
         {% endfor %}
         </tbody>

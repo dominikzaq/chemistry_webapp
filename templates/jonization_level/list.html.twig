@@ -10,6 +10,8 @@
             <th scope="col">name</th>
             <th scope="col">edit</th>
             <th scope="col">Energy level</th>
+            <th scope="col">Energy level</th>
+            <th scope="col">Oscillator strength</th>
             <th scope="col">Oscillator strength</th>
             <th scope="col">delete</th>
         </tr>
@@ -19,15 +21,21 @@
             <tr>
                 <td text="editable">{{ jl.name }}</td>
                 <td>
-                   {# <a href="{{ path('atom_edit', {'id': atom.id}) }}">
-                        Edit
-                    </a>#}
+                    <a href="{{ path('jonization_level_edit', {'id': jl.id}) }}">Edit</a>
                 </td>
                 <td>
-                    <a href="{{ path('atom_list') }}">Show</a>
+                    <a href="{{ path('energy_level_list', {'id': jl.id }) }}">List</a>
                 </td>
                 <td>
-                    <a href="{{ path('atom_list') }}">Show</a>
+                    <a href="{{ path('energy_level_add', {'id': jl.id }) }}">Add</a>
+                </td>
+                <td>
+                    <a href="{{ path('oscillator_strength_list', {'id': jl.id}) }}">
+                        List</a>
+                </td>
+                <td>
+                    <a href="{{ path('oscillator_strength_add', {'id': jl.id}) }}">
+                        Add</a>
                 </td>
                 <td>
                     <a href="{{ path('jonization_level_delete', {'id': jl.id}) }}">Delete</a>

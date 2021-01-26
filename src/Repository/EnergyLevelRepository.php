@@ -47,4 +47,15 @@ class EnergyLevelRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function deleteAllEnergyByJonizationLevelId($id)
+    {
+        return $this->createQueryBuilder('i')
+            ->andWhere('i.atom = :id')
+            ->setParameter('id', $id)
+            ->delete()
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

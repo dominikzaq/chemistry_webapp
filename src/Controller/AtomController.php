@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Atom;
 use App\Entity\Image;
+use App\Entity\JonizationLevel;
 use App\Form\AtomType;
 use App\Repository\AtomRepository;
 use App\Repository\ImageRepository;
+use App\Repository\JonizationLevelRepository;
 use App\Service\FileUploader;
 use Doctrine\DBAL\Exception;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -26,7 +28,7 @@ class AtomController extends AbstractController
     /**
      * @Route("/search", name="search_atom_by_id")
      */
-    public function searchAtomById(Request $request, AtomRepository $atomRepository): Response
+    public function searchAtomById(Request $request, AtomRepository $atomRepository, JonizationLevelRepository $jonizationLevelRepository): Response
     {
         $idAtom = $request->query->get('id_atom');
 
@@ -39,10 +41,12 @@ class AtomController extends AbstractController
             foreach ($images as $image) {
                 array_push($urlImages, $destination . $image->getImg());
             }
+            $jonizationLevels = $jonizationLevelRepository->findBy(["atom"=>$atom]);
 
             return $this->render('atom/view.html.twig', [
                 "atom" => $atom,
-                "url_images" => $urlImages
+                "url_images" => $urlImages,
+                "jonization_levels" => $jonizationLevels
             ]);
         }
         else {
@@ -54,7 +58,7 @@ class AtomController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(Request $request, AtomRepository $atomRepository): Response
+    public function index(Request $request, AtomRepository $atomRepository, JonizationLevelRepository $jonizationLevelRepository): Response
     {
         $options = ['csrf_protection' => false];
 
@@ -97,9 +101,12 @@ class AtomController extends AbstractController
                     array_push($urlImages,$destination.$image->getImg());
                 }
 
+                $jonizationLevels = $jonizationLevelRepository->findBy(["atom"=>$atom]);
+
                 return $this->render('atom/view.html.twig', [
                     "atom" => $atom,
-                    "url_images" => $urlImages
+                    "url_images" => $urlImages,
+                    "jonization_levels" => $jonizationLevels
                 ]);
             }
         }

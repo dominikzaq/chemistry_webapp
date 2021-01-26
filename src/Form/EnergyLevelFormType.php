@@ -2,18 +2,21 @@
 
 namespace App\Form;
 
-use App\Entity\JonizationLevel;
+use App\Entity\EnergyLevel;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\{SubmitType, TextType};
+use Symfony\Component\Form\Extension\Core\Type\{NumberType, SubmitType, IntegerType, TextType};
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class JonizationLevelType extends AbstractType
+class EnergyLevelFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('configuration', TextType::class)
+            ->add('term', TextType::class)
+            ->add('j', IntegerType::class)
+            ->add('level', NumberType::class)
             ->add('save', SubmitType::class)
         ;
     }
@@ -21,7 +24,7 @@ class JonizationLevelType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => JonizationLevel::class,
+            'data_class' => EnergyLevel::class,
         ]);
     }
 }
