@@ -50,8 +50,8 @@ class EnergyLevelRepository extends ServiceEntityRepository
 
     public function deleteAllEnergyByJonizationLevelId($id)
     {
-        return $this->createQueryBuilder('i')
-            ->andWhere('i.atom = :id')
+        return $this->createQueryBuilder('e')
+            ->andWhere('e. = :id')
             ->setParameter('id', $id)
             ->delete()
             ->getQuery()
