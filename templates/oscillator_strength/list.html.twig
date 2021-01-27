@@ -23,6 +23,8 @@
             <th scope="col">Fik [5]</th>
             <th scope="col">Aki [5]</th>
             <th scope="col">Fik ref.</th>
+            <th scope="col">Fik ref.</th>
+            <th scope="col">Aki ref.</th>
             <th scope="col">Aki ref.</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
@@ -45,8 +47,18 @@
                 <td>{{ oscillator_strength.aki4 }}</td>
                 <td>{{ oscillator_strength.fik5 }}</td>
                 <td>{{ oscillator_strength.aki5 }}</td>
-                <td></td>
-                <td></td>
+                <td>
+                    <a href="{{ path('fik_ref_list', {'id': oscillator_strength.id}) }}">List</a>
+                </td>
+                <td>
+                    <a href="{{ path('fik_ref_add', {'id': oscillator_strength.id}) }}">Add</a>
+                </td>
+                <td>
+                    <a href="{{ path('aki_ref_list', {'id': oscillator_strength.id}) }}">List</a>
+                </td>
+                <td>
+                    <a href="{{ path('fik_ref_add', {'id': oscillator_strength.id}) }}">Add</a>
+                </td>
                 <td>
                     <a href="{{ path('oscillator_strength_edit', {'id': oscillator_strength.id}) }}">Edit</a>
                 </td>

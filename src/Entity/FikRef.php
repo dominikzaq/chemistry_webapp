@@ -27,6 +27,12 @@ class FikRef
      */
     private $reference;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=OscillatorStrength::class, inversedBy="fikRefs")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $oscillatorStrength;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +58,18 @@ class FikRef
     public function setReference(string $reference): self
     {
         $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getOscillatorStrength(): ?OscillatorStrength
+    {
+        return $this->oscillatorStrength;
+    }
+
+    public function setOscillatorStrength(?OscillatorStrength $oscillatorStrength): self
+    {
+        $this->oscillatorStrength = $oscillatorStrength;
 
         return $this;
     }

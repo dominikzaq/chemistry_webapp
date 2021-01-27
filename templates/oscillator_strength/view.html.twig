@@ -43,8 +43,12 @@
                 <td>{{ oscillator_strength.aki4 }}</td>
                 <td>{{ oscillator_strength.fik5 }}</td>
                 <td>{{ oscillator_strength.aki5 }}</td>
-                <td></td>
-                <td></td>
+                <td>
+                    <a href="{{ path('fik_ref_view', {'id': oscillator_strength.id}) }}">View</a>
+                </td>
+                <td>
+                    <a href="{{ path('aki_ref_view', {'id': oscillator_strength.id}) }}">View</a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OscillatorStrengthRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -87,6 +89,22 @@ class OscillatorStrength
      * @ORM\Column(type="string", length=20)
      */
     private $term;
+
+    /**
+     * @ORM\OneToMany(targetEntity=AkiRef::class, mappedBy="oscillatorStrength", orphanRemoval=true)
+     */
+    private $akiRefs;
+
+    /**
+     * @ORM\OneToMany(targetEntity=FikRef::class, mappedBy="oscillatorStrength", orphanRemoval=true)
+     */
+    private $fikRefs;
+
+    public function __construct()
+    {
+        $this->akiRefs = new ArrayCollection();
+        $this->fikRefs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -257,6 +275,66 @@ class OscillatorStrength
     public function setTerm(string $term): self
     {
         $this->term = $term;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AkiRef[]
+     */
+    public function getAkiRefs(): Collection
+    {
+        return $this->akiRefs;
+    }
+
+    public function addAkiRef(AkiRef $akiRef): self
+    {
+        if (!$this->akiRefs->contains($akiRef)) {
+            $this->akiRefs[] = $akiRef;
+            $akiRef->setOscillatorStrength($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAkiRef(AkiRef $akiRef): self
+    {
+        if ($this->akiRefs->removeElement($akiRef)) {
+            // set the owning side to null (unless already changed)
+            if ($akiRef->getOscillatorStrength() === $this) {
+                $akiRef->setOscillatorStrength(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FikRef[]
+     */
+    public function getFikRefs(): Collection
+    {
+        return $this->fikRefs;
+    }
+
+    public function addFikRef(FikRef $fikRef): self
+    {
+        if (!$this->fikRefs->contains($fikRef)) {
+            $this->fikRefs[] = $fikRef;
+            $fikRef->setOscillatorStrength($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFikRef(FikRef $fikRef): self
+    {
+        if ($this->fikRefs->removeElement($fikRef)) {
+            // set the owning side to null (unless already changed)
+            if ($fikRef->getOscillatorStrength() === $this) {
+                $fikRef->setOscillatorStrength(null);
+            }
+        }
 
         return $this;
     }
