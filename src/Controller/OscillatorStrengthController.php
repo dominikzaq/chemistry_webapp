@@ -84,20 +84,21 @@ class OscillatorStrengthController extends AbstractController
     }
 
     /**
-     * @Route("/oscillator/strength/delete/{id}", name="oscillator_strength_deletee")
+     * @Route("/oscillator/strength/delete/{id}", name="oscillator_strength_delete")
      */
     public function delete(OscillatorStrength $oscillatorStrength): Response
     {
-        /*$atomId = $jonizationLevel->getAtom()->getId();
+        $jonizationLevelId = $oscillatorStrength->getJonizationLevel()->getId();
 
-        if($jonizationLevel)
+        if($oscillatorStrength)
         {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($jonizationLevel);
+            $em->remove($oscillatorStrength);
             $em->flush();
+            $this->addFlash('show_result', "Deleted oscillator level from database");
         }
         return $this->redirectToRoute("jonization_level_list", [
-            "id" => $atomId
-        ]);*/
+            "id" => $jonizationLevelId
+        ]);
     }
 }
