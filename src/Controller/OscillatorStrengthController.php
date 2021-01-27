@@ -77,8 +77,8 @@ class OscillatorStrengthController extends AbstractController
             $entityManager->flush();
             $this->addFlash('show_result', "Add new oscillator level");
 
-            return $this->redirectToRoute("jonization_level_list", [
-                "id" => $oscillatorStrength->getJonizationLevel()->getId()
+            return $this->redirectToRoute("jonization_level_list",[
+                "id" => $oscillatorStrength->getJonizationLevel()->getAtom()->getId()
             ]);
         }
 
