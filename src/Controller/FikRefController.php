@@ -51,8 +51,9 @@ class FikRefController extends AbstractController
             $entityManager->persist($fikRef);
             $entityManager->flush();
             $this->addFlash('show_result', "Edit new fik ref");
-            return $this->redirectToRoute('fik_ref_list', [
-                "id" => $fikRef->getOscillatorStrength()->getId(),
+
+            return $this->redirectToRoute("oscillator_strength_list", [
+                "id" => $fikRef->getOscillatorStrength()->getJonizationLevel()->getId(),
             ]);
         }
 
@@ -76,6 +77,10 @@ class FikRefController extends AbstractController
             $entityManager->persist($fikRef);
             $entityManager->flush();
             $this->addFlash('show_result', "Add new fik ref");
+
+            return $this->redirectToRoute("oscillator_strength_list", [
+                "id" => $oscillatorStrength->getJonizationLevel()->getId(),
+            ]);
         }
         return $this->render('fik_ref/add.html.twig', [
             'form' => $form->createView()

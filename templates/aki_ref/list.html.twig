@@ -9,7 +9,6 @@
         <tr>
             <th scope="col">id</th>
             <th scope="col">ref</th>
-            <th scope="col">reference</th>
             <th scope="col">edit</th>
             <th scope="col">delete</th>
         </tr>
@@ -18,16 +17,16 @@
         {% for ar in aki_ref %}
             <tr>
                 <td>
-                    <a href="{{ path('jonization_level_edit', {'id': ar.id}) }}">Edit</a>
+                    {{ ar.id }}
                 </td>
                 <td>
-                    <a href="{{ path('energy_level_list', {'id': ar.id }) }}">List</a>
+                    {{ ar.ref }}
                 </td>
                 <td>
-                    <a href="{{ path('energy_level_add', {'id': ar.id }) }}">Add</a>
+                    <a href="{{ path('aki_ref_edit', {'id': ar.id}) }}">Edit</a>
                 </td>
                 <td>
-                    <a href="{{ path('jonization_level_delete', {'id': ar.id}) }}">Delete</a>
+                    <a href="{{ path('aki_ref_delete', {'id': ar.id}) }}">Delete</a>
                 </td>
             </tr>
         {% endfor %}

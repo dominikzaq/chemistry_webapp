@@ -38,6 +38,10 @@ class EnergyLevelController extends AbstractController
             $entityManager->persist($energyLevel);
             $entityManager->flush();
             $this->addFlash('show_result', "Add new energy level");
+
+            return $this->redirectToRoute("jonization_level_list", [
+                "id" => $jonizationLevel->getAtom()->getId(),
+            ]);
         }
         return $this->render('energy_level/add.html.twig', [
             'form' => $form->createView(),
@@ -99,6 +103,10 @@ class EnergyLevelController extends AbstractController
             $entityManager->persist($energyLevel);
             $entityManager->flush();
             $this->addFlash('show_result', "Edit energy level");
+
+            return $this->redirectToRoute("energy_level_list", [
+                "id" => $energyLevel->getJonizationLevel()->getId(),
+            ]);
         }
 
         return $this->render('energy_level/edit.html.twig', [

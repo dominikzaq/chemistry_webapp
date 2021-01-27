@@ -76,6 +76,10 @@ class OscillatorStrengthController extends AbstractController
             $entityManager->persist($oscillatorStrength);
             $entityManager->flush();
             $this->addFlash('show_result', "Add new oscillator level");
+
+            return $this->redirectToRoute("jonization_level_list", [
+                "id" => $oscillatorStrength->getJonizationLevel()->getId()
+            ]);
         }
 
         return $this->render('oscillator_strength/add.html.twig', [

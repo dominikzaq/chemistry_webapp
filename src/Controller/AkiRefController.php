@@ -63,8 +63,8 @@ class AkiRefController extends AbstractController
             $entityManager->flush();
             $this->addFlash('show_result', "Add new aki ref");
 
-            return $this->redirectToRoute('aki_ref_list', [
-                "id" => $akiRef->getOscillatorStrength()->getId(),
+            return $this->redirectToRoute("oscillator_strength_list", [
+                "id" => $oscillatorStrength->getJonizationLevel()->getId(),
             ]);
         }
 
@@ -87,13 +87,31 @@ class AkiRefController extends AbstractController
             $entityManager->flush();
             $this->addFlash('show_result', "Edit new aki ref");
 
-            return $this->redirectToRoute('fik_ref_list', [
-                "id" => $akiRef->getOscillatorStrength()->getId(),
+            return $this->redirectToRoute("oscillator_strength_list", [
+                "id" => $akiRef->getOscillatorStrength()->getJonizationLevel()->getId(),
             ]);
         }
 
-        return $this->render('aki_ref/add.html.twig', [
+        return $this->render('aki_ref/edit.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/aki/ref/delete/{id}", name="aki_ref_delete")
+     */
+    public function delete(AkiRef $akiRef): Response
+    {
+        $atomId = $akiRef->getOscillatorStrength()->getId();
+
+        if($akiRef)
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($akiRef);
+            $em->flush();
+        }
+        return $this->redirectToRoute("aki_ref_list", [
+            "id" => $atomId
         ]);
     }
 }

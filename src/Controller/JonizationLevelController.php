@@ -39,6 +39,10 @@ class JonizationLevelController extends AbstractController
             $entityManager->persist($jonizationLevel);
             $entityManager->flush();
             $this->addFlash('show_result', "Edit jonization level");
+
+            return $this->redirectToRoute("jonization_level_list", [
+                "id" => $jonizationLevel->getAtom()->getId()
+            ]);
         }
         return $this->render('jonization_level/edit.html.twig', [
             'form' => $form->createView(),
@@ -60,6 +64,10 @@ class JonizationLevelController extends AbstractController
             $entityManager->persist($jonizationLevel);
             $entityManager->flush();
             $this->addFlash('show_result', "Add new jonization level");
+
+            return $this->redirectToRoute("jonization_level_list", [
+                "id" => $jonizationLevel->getAtom()->getId()
+            ]);
         }
         return $this->render('jonization_level/add.html.twig', [
             'form' => $form->createView()

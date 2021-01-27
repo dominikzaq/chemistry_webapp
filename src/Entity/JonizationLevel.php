@@ -31,12 +31,12 @@ class JonizationLevel
     private $atom;
 
     /**
-     * @ORM\OneToMany(targetEntity=EnergyLevel::class, mappedBy="jonizationLevel")
+     * @ORM\OneToMany(targetEntity=EnergyLevel::class, mappedBy="jonizationLevel", orphanRemoval=true)
      */
     private $energyLevels;
 
     /**
-     * @ORM\OneToMany(targetEntity=OscillatorStrength::class, mappedBy="jonizationLevel")
+     * @ORM\OneToMany(targetEntity=OscillatorStrength::class, mappedBy="jonizationLevel", orphanRemoval=true)
      */
     private $oscillatorStrengths;
 

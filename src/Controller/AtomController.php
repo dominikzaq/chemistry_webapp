@@ -143,6 +143,7 @@ class AtomController extends AbstractController
                 $em->persist($image);
                 $em->flush();
             }
+            return $this->redirectToRoute('atom_list');
         }
 
         $urlImages = [];
