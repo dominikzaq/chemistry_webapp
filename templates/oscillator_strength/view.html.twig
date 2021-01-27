@@ -8,7 +8,6 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Id</th>
             <th scope="col">Transition</th>
             <th scope="col">Terms</th>
             <th scope="col">J-J'</th>
@@ -29,7 +28,6 @@
         <tbody>
         {% for oscillator_strength in oscillator_strengths %}
             <tr>
-                <td>{{ oscillator_strength.id }}</td>
                 <td>{{ oscillator_strength.transition }}</td>
                 <td>{{ oscillator_strength.term }}</td>
                 <td>{{ oscillator_strength.jJ }}</td>
