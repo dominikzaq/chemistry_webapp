@@ -15,13 +15,9 @@
         <tbody>
         {% for ar in aki_ref %}
             <tr>
-                <td text="editable">{{ ar.name }}</td>
-                <td>
-                    <a href="{{ path('jonization_level_edit', {'id': ar.id}) }}">Edit</a>
-                </td>
-                <td>
-                    <a href="{{ path('energy_level_list', {'id': ar.id }) }}">List</a>
-                </td>
+                <td>{{ ar.id }}</td>
+                <td>{{ ar.ref }}</td>
+                <td>{{ ar.reference }}</td>
             </tr>
         {% endfor %}
         </tbody>

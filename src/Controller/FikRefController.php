@@ -81,4 +81,23 @@ class FikRefController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/fik/ref/add/delete/{id}", name="fik_ref_delete")
+     */
+    public function delete(FikRef $fikRef): Response
+    {
+        $firkRefId = $fikRef->getOscillatorStrength()->getId();
+
+        if($fikRef)
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($fikRef);
+            $em->flush();
+            $this->addFlash('show_result', "Deleted oscillator level from database");
+        }
+        return $this->redirectToRoute("fik_ref_list", [
+            "id" => $firkRefId
+        ]);
+    }
 }
